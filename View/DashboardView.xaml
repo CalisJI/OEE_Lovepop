@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="OEE_dotNET.View.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OEE_dotNET.View"
+             xmlns:vm="clr-namespace:OEE_dotNET.ViewModel"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=vm:DashboardViewModel}"
+             xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#222E31">
+        <wv2:WebView2 Source="http://127.0.0.1:5500/pages/charts/chartjs.html"/>
+    </Grid>
+</UserControl>

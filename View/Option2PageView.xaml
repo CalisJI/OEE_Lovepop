@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="OEE_dotNET.View.Option2PageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OEE_dotNET.View"
+             xmlns:vm="clr-namespace:OEE_dotNET.ViewModel"
+             
+             d:DataContext="{d:DesignInstance Type=vm:Option2PageViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <vm:Invertboolean x:Key="Invbool"/>
+    </UserControl.Resources>
+    <Grid Background="#e2e9e9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--Top Sector-->
+        <StackPanel Orientation="Horizontal">
+            <TextBlock
+                Style="{StaticResource tbloxcustom}"
+                Text="File Path:"
+                VerticalAlignment="Center"/>
+            <TextBox
+                Style="{StaticResource normaltexbox}"
+                Text="{Binding Filepath}"
+                Width="400"
+                Height="25"/>
+            <Button 
+                Content="Open"
+                Height="25"
+                Width="50"
+                Style="{StaticResource normalButton}"
+                Margin="5 0 0 0"
+                Command="{Binding OpenfileCommand}">
+       
+            </Button>
+        </StackPanel>
+        
+        <!--Middle Sector-->
+        <Grid Grid.Row="1">
+            <DataGrid
+                ItemsSource="{Binding Plan_table}"
+                AutoGenerateColumns="False"
+                GridLinesVisibility="None">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="ID">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <Ellipse
+                                        Height="5" 
+                                        Width="5"
+                                        Fill="Red"
+                                        Margin="5,0"/>
+                                    <TextBlock
+                                        Text="{Binding id}"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="MO Code" Binding="{Binding mo_code}"/>
+                    <DataGridTextColumn Header="LP Code" Binding="{Binding lp_code}"/>
+                    <DataGridTextColumn Header="Cutting Code" Binding="{Binding cutting_code}"/>
+                    <DataGridTextColumn Header="Priority" Binding="{Binding priority}"/>
+                    <DataGridTextColumn Header="Paper" Binding="{Binding paper}"/>
+                    <DataGridTextColumn Header="File Name" Binding="{Binding filename}"/>
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}"/>
+                    <DataGridTextColumn Header="Machine ID" Binding="{Binding machine_id}"/>
+                    <DataGridTextColumn Header="Create At" Binding="{Binding created_at, StringFormat=\{0:dd-MM-yyyy\}}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+        <!--Bottom Sector-->
+        <StackPanel
+            HorizontalAlignment="Right"
+            Grid.Row="2" Orientation="Horizontal">
+            <Button 
+                Style="{StaticResource normalButton}"
+                Content="Apply"
+                Margin="10 0 10 0"
+                Height="30"
+                Width="60"
+                IsEnabled="{Binding Insert2DB, Converter={StaticResource Invbool}}"
+                Command="{Binding ApplyCommand}"/>
+            <Button 
+                Style="{StaticResource normalButton}"
+                Content="Cancel"
+                Margin="10 0 10 0"
+                Height="30"
+                Width="60"
+                Command="{Binding Cancel_actionCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,421 @@
+﻿<UserControl x:Class="OEE_dotNET.View.Option1PageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OEE_dotNET.View"
+             mc:Ignorable="d" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:lvc2="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             xmlns:vm ="clr-namespace:OEE_dotNET.ViewModel"
+             d:DataContext="{d:DesignInstance Type=vm:Option1PageViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks">
+    <!--<Grid Background="#222E31">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        --><!--Line Chart--><!--
+        <lvc:CartesianChart
+            
+            Margin="10"
+            Grid.Row="0"
+            Grid.Column="0">
+            <lvc:CartesianChart.Series>
+                <lvc:LineSeries
+                    StrokeThickness="2"
+                    LineSmoothness="2"
+                    Values="{Binding Values1}"
+                    Fill="Transparent" />
+            </lvc:CartesianChart.Series>
+        </lvc:CartesianChart>
+
+        --><!--StepLine Chart--><!--
+        <lvc:CartesianChart
+            Margin="10"
+            
+            Grid.Row="0"
+            Grid.Column="1">
+            <lvc:CartesianChart.Series>
+                <lvc:StepLineSeries Values="{Binding Values2}"/>
+            </lvc:CartesianChart.Series>
+        </lvc:CartesianChart>
+
+        --><!--Pie Chart--><!--
+        <lvc:PieChart
+            LegendLocation="Right"
+            Margin="10"
+            Grid.Row="1"
+            Grid.Column="0">
+            <lvc:PieChart.Series>
+                <lvc:PieSeries Values="{Binding Values3a}" Title="Series 1"/>
+                <lvc:PieSeries Values="{Binding Values3b}" Title="Series 2"/>
+                <lvc:PieSeries Values="{Binding Values3c}" Title="Series 3"/>
+            </lvc:PieChart.Series>
+        </lvc:PieChart>
+
+        --><!--Columns Chart--><!--
+        <lvc:CartesianChart
+            LegendLocation="Bottom"
+            Margin="10"
+            Grid.Row="1"
+            Grid.Column="1">
+            <lvc:CartesianChart.Series>
+                <lvc:ColumnSeries Title="Series 1" Values="{Binding Values4a}"/>
+                <lvc:ColumnSeries Title="Series 2" Values="{Binding Values4b}"/>
+                <lvc:ColumnSeries Title="Series 3" Values="{Binding Values4c}"/>
+            </lvc:CartesianChart.Series>
+        </lvc:CartesianChart>
+    </Grid>-->
+    <Grid Background="#222E31">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border
+                Style="{StaticResource cards}"
+                Grid.Column="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label 
+                        Content="MACHINE STATE:"
+                        FontWeight="Bold"
+                        VerticalAlignment="Center"/>
+                    <TextBlock 
+                        Text="Run"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        Background="Green"
+                        VerticalAlignment="Center"
+                        Height="20"
+                        Width="30"
+                        TextAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            
+            <!--Running time-->
+            <Border
+                Style="{StaticResource cards}"
+               Grid.Column="1">
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconForkAwesome
+                            Foreground="LimeGreen"
+                            Kind="PlayCircle"
+                            Margin="2"
+                            Height="25"
+                            Width="25"
+                            VerticalAlignment="Center"/>
+                        <TextBlock
+                            Text="Run Time"
+                            Style="{StaticResource txbl_card_1}"/>
+                    </StackPanel>
+                    <TextBlock
+                        Foreground="LimeGreen"
+                        Style="{StaticResource txbl_card_2}">
+                        <Run Text="{Binding Running_time}"/>
+                        <Run Text=" minutes"/>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+                
+             <!--Pause time-->
+            <Border
+                Style="{StaticResource cards}"
+               Grid.Column="2">
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconForkAwesome
+                            Foreground="Orange"
+                            Kind="PauseCircle"
+                            Margin="5"
+                            Height="25"
+                            Width="25"
+                            VerticalAlignment="Center"/>
+                        <TextBlock
+                            Text="Pause Time"
+                            Style="{StaticResource txbl_card_1}"/>
+                    </StackPanel>
+                    <TextBlock
+                        Foreground="Orange"
+                        Style="{StaticResource txbl_card_2}">
+                        <Run Text="{Binding Pause_time}"/>
+                        <Run Text=" minutes"/>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <!--Stop time-->
+            <Border
+                Style="{StaticResource cards}"
+               Grid.Column="3">
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconForkAwesome
+                            Foreground="red"
+                            Kind="StopCircle"
+                            Margin="5"
+                            Height="25"
+                            Width="25"
+                            VerticalAlignment="Center"/>
+                        <TextBlock
+                            Text="Stop Time"
+                            Style="{StaticResource txbl_card_1}"/>
+                    </StackPanel>
+                    <TextBlock
+                        Foreground="Red"
+                        Style="{StaticResource txbl_card_2}">
+                        <Run Text="{Binding Stop_time}"/>
+                        <Run Text=" minutes"/>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--OEE-->
+            <Border
+                Style="{StaticResource cards}"
+                Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="OEE"
+                        VerticalAlignment="Bottom"
+                        FontWeight="DemiBold"
+                        HorizontalAlignment="Center"/>
+                    <lvc:Gauge
+                        LabelFormatter="{Binding Formatter}"
+                        Grid.Row="1"
+                        Margin="12"
+                        InnerRadius="70"
+                        GaugeActiveFill="Green"
+                        Value="{Binding Oee}"
+                        From="0"
+                        To="100">
+                    </lvc:Gauge>
+                </Grid>
+            </Border>
+
+            <!--Availability-->
+            <Border
+                Style="{StaticResource cards}"
+                Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="Availability"
+                        VerticalAlignment="Bottom"
+                        FontWeight="DemiBold"
+                        HorizontalAlignment="Center"/>
+                    <lvc:Gauge
+                        LabelFormatter="{Binding Formatter}"
+                        Grid.Row="1"
+                        Margin="12"
+                        InnerRadius="70"
+                        GaugeActiveFill="Orange"
+                        Value="{Binding Availability}"
+                        From="0"
+                        To="100">
+                    </lvc:Gauge>
+                </Grid>
+            </Border>
+
+            <!--Performance-->
+            <Border
+                Style="{StaticResource cards}"
+                Grid.Column="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="Performance"
+                        VerticalAlignment="Bottom"
+                        FontWeight="DemiBold"
+                        HorizontalAlignment="Center"/>
+                    <lvc:Gauge
+                        LabelFormatter="{Binding Formatter}"
+                        Grid.Row="1"
+                        Margin="12"
+                        InnerRadius="70"
+                        GaugeActiveFill="YellowGreen"
+                        Value="{Binding Performance}"
+                        From="0"
+                        To="100">
+                    </lvc:Gauge>
+                </Grid>
+            </Border>
+
+            <!--Quality-->
+            <Border
+                Style="{StaticResource cards}"
+                Grid.Column="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="Quality"
+                        VerticalAlignment="Bottom"
+                        FontWeight="DemiBold"
+                        HorizontalAlignment="Center"/>
+                    <lvc:Gauge
+                        LabelFormatter="{Binding Formatter}"
+                        Grid.Row="1"
+                        Margin="12"
+                        InnerRadius="70"
+                        GaugeActiveFill="Blue"
+                        Value="{Binding Quality}"
+                        From="0"
+                        To="100">
+                    </lvc:Gauge>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Grid.Column="0"
+                Style="{StaticResource cards}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock 
+                        Margin="2"
+                        FontWeight="DemiBold"
+                        VerticalAlignment="Center"
+                        Text="Machine Run Time (min)"/>
+
+                    <Grid Grid.Row="1">
+                        <lvc:PieChart
+                        LegendLocation="Bottom"
+                        Margin="10"
+                        InnerRadius="80"
+                        Series="{Binding SeriesViews}"
+                        />
+                        <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                            <TextBlock
+                            TextAlignment="Center"
+                            FontWeight="SemiBold"
+                            Foreground="#707070"
+                            Text="Total"/>
+                            <TextBlock
+                            TextAlignment="Center"
+                            FontSize="30"
+                            FontWeight="DemiBold"
+                            Text="{Binding Total}"/>
+                        </StackPanel>
+                    </Grid>
+                    
+                </Grid>
+            </Border>
+
+            <Border
+                Grid.ColumnSpan="2"
+                Grid.Column="1"
+                Style="{StaticResource cards}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <TextBlock 
+                            Margin="2"
+                            HorizontalAlignment="Left"
+                            FontWeight="DemiBold"
+                            VerticalAlignment="Center"
+                            Text="OEE"/>
+                    </Grid>
+                    <lvc:CartesianChart Grid.Row="1" LegendLocation="Bottom">
+                        <lvc:CartesianChart.Series>
+                            <lvc:LineSeries
+                                StrokeThickness="2"
+                                LineSmoothness="2"
+                                Title="Oee"
+                                Fill="Transparent"
+                                Stroke="Green"
+                                PointGeometrySize="1" 
+                                Values="{Binding OeeLine}" />
+                            <lvc:LineSeries
+                                StrokeThickness="2"
+                                LineSmoothness="2"
+                                Title="Availability"
+                                Fill="Transparent"
+                                Stroke="Orange"
+                                PointGeometrySize="1" 
+                                Values="{Binding AvailabilityLine}" />
+                            <lvc:LineSeries
+                                StrokeThickness="2"
+                                LineSmoothness="2"
+                                Title="Performance"
+                                Fill="Transparent"
+                                Stroke="Yellow"
+                                PointGeometrySize="1" 
+                                Values="{Binding PerformanceLine}"/>
+                            <lvc:LineSeries
+                                StrokeThickness="2"
+                                LineSmoothness="2"
+                                Title="Quality"
+                                Fill="Transparent"
+                                Stroke="Blue"
+                                PointGeometrySize="1" 
+                                Values="{Binding QualityLine}" />
+                        </lvc:CartesianChart.Series>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+        </Grid>
+        
+    </Grid>
+</UserControl>

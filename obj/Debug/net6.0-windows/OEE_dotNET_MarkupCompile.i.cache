@@ -1,0 +1,20 @@
+﻿OEE_dotNET
+1.0.0.0
+
+winexe
+C#
+.cs
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\
+OEE_dotNET
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\App.xaml
+786112602
+3-771347058
+1916738898
+2802091668024
+MainWindow.xaml;Style.xaml;ViewModelResource.xaml;View\DashboardView.xaml;View\Option1PageView.xaml;View\Option2PageView.xaml;View\Option3PageView.xaml;
+
+True
+
