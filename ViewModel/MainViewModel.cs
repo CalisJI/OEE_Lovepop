@@ -47,6 +47,19 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
+    public void Exit() 
+    {
+        Environment.Exit(0);
+        Application.Current.Shutdown();
+    }
+
+    [RelayCommand]
+    public void Logout() 
+    {
+        View1 = null;
+    }
+
+    [RelayCommand]
     public void Dashboard() 
     {
         Login(true);

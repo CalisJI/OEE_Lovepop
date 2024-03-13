@@ -19,6 +19,8 @@ using System.Net.NetworkInformation;
 using OEE_dotNET.Database;
 using System.Windows.Media;
 using System.Net.WebSockets;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace OEE_dotNET.ViewModel;
 
@@ -154,5 +156,24 @@ public partial class Option1PageViewModel: ObservableObject
         var Oee_ratio = availability_ratio * quality_ratio * performance_ratio;
 
         return (Oee_ratio*100, availability_ratio*100, performance_ratio*100,quality_ratio*100);
+    }
+}
+
+public class Status_color : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (string)value switch
+        {
+            "Run" => Brushes.Green,
+            "Pause" => Brushes.Orange,
+            "Stop" => Brushes.Red,
+            _ => Brushes.Gray,
+        };
+    }
+
+    public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return null;
     }
 }

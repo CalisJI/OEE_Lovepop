@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/urQh41UNXTGjqQv7vrAhfWniGKf15SoksZOkSMpTCZkAcOH1siSr4ODt61rGsNbBm5YzBfc4TkPuMq9NyTcsg==",
+  "dgSpecHash": "4qc/JkCvM4NSgH/q6AY85ZNcPC3aCC5vVK8vOtyHBE+gaTzbVEy+uGAMweEPuxXJsMncrqqsWl9+C8DpJj4mbw==",
   "success": true,
   "projectFilePath": "F:\\VISUAL PROJECT\\CSharp\\WPF\\OEE_dotNET\\OEE_dotNET.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,8 @@
     "C:\\Users\\quyth\\.nuget\\packages\\livechartscore.skiasharpview.wpf\\2.0.0-rc2\\livechartscore.skiasharpview.wpf.2.0.0-rc2.nupkg.sha512",
     "C:\\Users\\quyth\\.nuget\\packages\\mahapps.metro.iconpacks\\4.11.0\\mahapps.metro.iconpacks.4.11.0.nupkg.sha512",
     "C:\\Users\\quyth\\.nuget\\packages\\mahapps.metro.iconpacks.material\\4.11.0\\mahapps.metro.iconpacks.material.4.11.0.nupkg.sha512",
+    "C:\\Users\\quyth\\.nuget\\packages\\materialdesigncolors\\3.0.0\\materialdesigncolors.3.0.0.nupkg.sha512",
+    "C:\\Users\\quyth\\.nuget\\packages\\materialdesignthemes\\5.0.0\\materialdesignthemes.5.0.0.nupkg.sha512",
     "C:\\Users\\quyth\\.nuget\\packages\\microsoft.aspnet.webapi.client\\6.0.0\\microsoft.aspnet.webapi.client.6.0.0.nupkg.sha512",
     "C:\\Users\\quyth\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.3.0\\microsoft.aspnet.webapi.core.5.3.0.nupkg.sha512",
     "C:\\Users\\quyth\\.nuget\\packages\\microsoft.aspnet.webapi.owin\\5.3.0\\microsoft.aspnet.webapi.owin.5.3.0.nupkg.sha512",

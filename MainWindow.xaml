@@ -13,11 +13,11 @@
         ResizeMode="CanResize"
         Background="Transparent"
         WindowStyle="None"
+        xmlns:materialdesigned = "http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
         AllowsTransparency="True">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Booltovis"/>
-         
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -35,13 +35,28 @@
             MouseDown="Border_MouseDown"
             MouseLeftButtonDown="Border_MouseLeftButtonDown">
             <Grid>
+                <materialdesigned:PopupBox 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0 0 10 0"
+                    PlacementMode="BottomAndAlignRightEdges">
+                    <materialdesigned:PopupBox.ToggleContent>
+                        <Icon:PackIconMaterial Kind="Account" Foreground="#ff131f"/>
+                    </materialdesigned:PopupBox.ToggleContent>
+                    <StackPanel Orientation="Vertical" Background="#e1e3e3">
+                        <Button Content="Account" FontWeight="DemiBold"/>
+                        <Button Content="Settings" FontWeight="DemiBold"/>
+                        <Button Content="Log out" FontWeight="DemiBold" Command="{Binding LogoutCoommand}"/>
+                        <Button Content="Exit" FontWeight="DemiBold"/>
+                    </StackPanel>
+                </materialdesigned:PopupBox>
                 <Button Style="{StaticResource topButton}" HorizontalAlignment="Left" >
                     <Icon:PackIconMaterial Kind="Menu"/>
                 </Button>
-                <Icon:PackIconMaterial Kind="Microsoft" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF131E"/>
-                <Button Style="{StaticResource topButton}" HorizontalAlignment="Right" >
+                <!--<Icon:PackIconMaterial Kind="Microsoft" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF131E"/>-->
+                <!--<Button Style="{StaticResource topButton}" HorizontalAlignment="Right" >
                     <Icon:PackIconMaterial Kind="Account"/>
-                </Button>
+                </Button>-->
             </Grid>
         </Border>
         
