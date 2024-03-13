@@ -25,6 +25,7 @@ namespace OEE_dotNET.Database
         private static string Database = "workstation";
         private static string acounts_tbl = "accounts_tbl";
         private static string lazer_tbl = "lazer_configuration";
+        private static string total_plan = "total_plan";
         private static string Str_connection = "Server = " + Host + ";Database =" + Database + "; UId = " + User + "; Pwd = " + Password + "; Pooling = false; Character Set=utf8; SslMode=none";
 
 
@@ -377,6 +378,7 @@ namespace OEE_dotNET.Database
                 connection.Close();
             }
         }
+
         public static void UpdateLazerconfig(List<Rowobject> rowobjects) 
         {
             MySqlConnection connection = new MySqlConnection(Str_connection);
@@ -558,6 +560,90 @@ namespace OEE_dotNET.Database
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        #endregion
+
+
+        #region Plan state
+        public static DataTable Load_Total_Plan()
+        {
+            var datatable = new DataTable();
+
+            MySqlConnection connection = new MySqlConnection(Str_connection);
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                    string? query = $"SELECT * FROM {total_plan}";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                string columnName = reader.GetName(i);
+                                datatable.Columns.Add(columnName);
+                            }
+
+                            while (reader.Read())
+                            {
+                                object[] values = new object[reader.FieldCount];
+                                reader.GetValues(values);
+                                datatable.Rows.Add(values);
+                            }
+                        }
+                    }
+                    return datatable;
+                }
+                else
+                {
+                    return datatable = new DataTable()
+                    {
+                        Columns =
+                        {
+                            new DataColumn("id",typeof(int)),
+                            new DataColumn("created_at",typeof(DateTime)),
+                            new DataColumn("mo_code",typeof(string)),
+                            new DataColumn("lp_code",typeof(string)),
+                            new DataColumn("cutting_code",typeof(string)),
+                            new DataColumn("priority",typeof(double)),
+                            new DataColumn("paper",typeof(string)),
+                            new DataColumn("filename",typeof(string)),
+                            new DataColumn("quantity",typeof(int)),
+                            new DataColumn("machine_id",typeof (string)),
+                            new DataColumn("state",typeof(double))
+                        }
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return datatable = new DataTable()
+                {
+                    Columns =
+                    {
+                        new DataColumn("id",typeof(int)),
+                        new DataColumn("created_at",typeof(DateTime)),
+                        new DataColumn("mo_code",typeof(string)),
+                        new DataColumn("lp_code",typeof(string)),
+                        new DataColumn("cutting_code",typeof(string)),
+                        new DataColumn("priority",typeof(double)),
+                        new DataColumn("paper",typeof(string)),
+                        new DataColumn("filename",typeof(string)),
+                        new DataColumn("quantity",typeof(int)),
+                        new DataColumn("machine_id",typeof (string)),
+                        new DataColumn("state",typeof(double))
+                    }
+                };
+
+
             }
             finally
             {

@@ -15,4 +15,7 @@
     <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
         <v:DashboardView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PlanOverview_ViewModel}">
+        <v:PlanOverview_View/>
+    </DataTemplate>
 </ResourceDictionary>

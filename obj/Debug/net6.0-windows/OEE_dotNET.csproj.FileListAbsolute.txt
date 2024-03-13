@@ -154,3 +154,5 @@ F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\runtimes\win-x6
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\MaterialDesignColors.dll
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\PlanOverview_View.g.cs
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\PlanOverview_View.baml

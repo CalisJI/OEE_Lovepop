@@ -372,7 +372,7 @@
                         <TextBlock
                             Foreground="Red"
                             Style="{StaticResource txbl_card_2}">
-                            <Run Text="{Binding Quantity_require}"/>
+                            <Run Text="0"/>
                             <Run Text="PCS"/>
                         </TextBlock>
                     </StackPanel>

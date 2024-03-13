@@ -22,6 +22,7 @@ public partial class MainViewModel : ObservableObject
     Option2PageViewModel? option2PageView;
     Option3PageViewModel? option3PageView;
     DashboardViewModel? dashboardView;
+    PlanOverview_ViewModel? planOverview_View;
     [ObservableProperty]
     private string? aboutcontent = "About company";
 
@@ -56,23 +57,16 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     public void Logout() 
     {
+        Login(false);
+        DatabaseExcute_Main.Current_User = null;
         View1 = null;
+
     }
 
     [RelayCommand]
     public void Dashboard() 
     {
         Login(true);
-        //if (dashboardView == null) 
-        //{
-        //    dashboardView = new DashboardViewModel();
-        //    View1 = dashboardView;
-        //}
-        //else 
-        //{
-        //    View1 = dashboardView;
-        //}
-
         if (option1PageView == null)
         {
             option1PageView = new Option1PageViewModel();
@@ -87,19 +81,22 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     public void Home() 
     {
-        Login(true);
-        if(option3PageView == null) 
-        {
-            option3PageView = new Option3PageViewModel();
-            View1 = option3PageView;
-        }
-        else 
-        {
-            View1 = option3PageView;
-        }
         
     }
-
+    [RelayCommand]
+    public void Monitoring() 
+    {
+        Login(true);
+        if (dashboardView == null)
+        {
+            dashboardView = new DashboardViewModel();
+            View1 = dashboardView;
+        }
+        else
+        {
+            View1 = dashboardView;
+        }
+    }
     [RelayCommand]
     public void Log_In() 
     {
@@ -117,14 +114,49 @@ public partial class MainViewModel : ObservableObject
                         option1PageView = new Option1PageViewModel();
                         View1 = option1PageView;
                     }
+                    else 
+                    {
+                        View1 = option1PageView;
+                    }
                 }
-                else if(DatabaseExcute_Main.Current_User.Permission == "Operater")
+                else if(DatabaseExcute_Main.Current_User.Permission == "Operator")
                 {
-
+                    Login(true);
+                    if (planOverview_View == null)
+                    {
+                        planOverview_View = new PlanOverview_ViewModel();
+                        View1 = planOverview_View;
+                    }
+                    else
+                    {
+                        View1 = planOverview_View;
+                    }
                 }
-                else if (DatabaseExcute_Main.Current_User.Permission == "Teachnical")
+                else if (DatabaseExcute_Main.Current_User.Permission == "Plan")
                 {
-
+                    Login(true);
+                    if (option2PageView == null)
+                    {
+                        option2PageView = new Option2PageViewModel();
+                        View1 = option2PageView;
+                    }
+                    else
+                    {
+                        View1 = option2PageView;
+                    }
+                }
+                else if (DatabaseExcute_Main.Current_User.Permission == "Technical")
+                {
+                    Login(true);
+                    if (option3PageView == null)
+                    {
+                        option3PageView = new Option3PageViewModel();
+                        View1 = option3PageView;
+                    }
+                    else
+                    {
+                        View1 = option3PageView;
+                    }
                 }
             }
 

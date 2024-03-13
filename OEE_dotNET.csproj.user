@@ -19,6 +19,9 @@
     <Compile Update="View\Option3PageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\PlanOverview_View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -40,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Option3PageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PlanOverview_View.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -10,6 +10,9 @@
              xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#222E31">
-        <wv2:WebView2 Source="http://127.0.0.1:5500/pages/charts/chartjs.html"/>
+        <!--http://127.0.0.1:3000/dashboards-->
+        <!--<wv2:WebView2 Source="http://127.0.0.1:5500/pages/charts/chartjs.html"/>-->
+        <wv2:WebView2 Source="http://127.0.0.1:3000/d/ce566f75-cc69-4676-bf76-9602d7173139/new-dashboard?orgId=1&#38;viewPanel=1"/>
+
     </Grid>
 </UserControl>

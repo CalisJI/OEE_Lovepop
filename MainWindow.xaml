@@ -46,13 +46,29 @@
                     <StackPanel Orientation="Vertical" Background="#e1e3e3">
                         <Button Content="Account" FontWeight="DemiBold"/>
                         <Button Content="Settings" FontWeight="DemiBold"/>
-                        <Button Content="Log out" FontWeight="DemiBold" Command="{Binding LogoutCoommand}"/>
-                        <Button Content="Exit" FontWeight="DemiBold"/>
+                        <Button Content="Log out" FontWeight="DemiBold" Command="{Binding LogoutCommand}"/>
+                        <Button Content="Exit" FontWeight="DemiBold" Command="{Binding ExitCommand}"/>
                     </StackPanel>
                 </materialdesigned:PopupBox>
                 <Button Style="{StaticResource topButton}" HorizontalAlignment="Left" >
-                    <Icon:PackIconMaterial Kind="Menu"/>
+                    
                 </Button>
+
+                <materialdesigned:PopupBox 
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="10 0 0 0"
+                    PlacementMode="BottomAndAlignLeftEdges">
+                    <materialdesigned:PopupBox.ToggleContent>
+                        <Icon:PackIconMaterial Kind="Menu" Foreground="#ff131f"/>
+                    </materialdesigned:PopupBox.ToggleContent>
+                    <StackPanel Orientation="Vertical" Background="#e1e3e3">
+                        <Button Content="Home" FontWeight="DemiBold"/>
+                        <Button Content="Dashboard" FontWeight="DemiBold" Command="{Binding DashboardCommand}"/>
+                        <Button Content="Mornitoring" FontWeight="DemiBold" Command="{Binding MonitoringCommand}"/>
+                    </StackPanel>
+                </materialdesigned:PopupBox>
+
                 <!--<Icon:PackIconMaterial Kind="Microsoft" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF131E"/>-->
                 <!--<Button Style="{StaticResource topButton}" HorizontalAlignment="Right" >
                     <Icon:PackIconMaterial Kind="Account"/>
@@ -202,9 +218,9 @@
                            Text="Copyright © 2024. All right reserved "/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-                    <Button Style="{StaticResource bottomButton}" Content="Home" Command="{Binding HomeCommand}"/>
+                    <!--<Button Style="{StaticResource bottomButton}" Content="Home" Command="{Binding HomeCommand}"/>-->
                     <Button Style="{StaticResource bottomButton}" Content="About" Command="{Binding AboutCommand}"/>
-                    <Button Style="{StaticResource bottomButton}" Content="Dashboard" Command="{Binding DashboardCommand}"/>
+                    <!--<Button Style="{StaticResource bottomButton}" Content="Dashboard" Command="{Binding DashboardCommand}"/>-->
                 </StackPanel>
             </Grid>
         </Border>
