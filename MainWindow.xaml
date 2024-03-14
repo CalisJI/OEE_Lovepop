@@ -23,7 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="0.08*"/>
         </Grid.RowDefinitions>
         <!--Top Section-->
         <Border
@@ -66,6 +66,7 @@
                         <Button Content="Home" FontWeight="DemiBold"/>
                         <Button Content="Dashboard" FontWeight="DemiBold" Command="{Binding DashboardCommand}"/>
                         <Button Content="Mornitoring" FontWeight="DemiBold" Command="{Binding MonitoringCommand}"/>
+                        <Button Content="About" FontWeight="DemiBold" Command="{Binding AboutCommand}"/>
                     </StackPanel>
                 </materialdesigned:PopupBox>
 
@@ -217,11 +218,11 @@
                            Foreground="#909090"
                            Text="Copyright © 2024. All right reserved "/>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-                    <!--<Button Style="{StaticResource bottomButton}" Content="Home" Command="{Binding HomeCommand}"/>-->
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+                    --><!--<Button Style="{StaticResource bottomButton}" Content="Home" Command="{Binding HomeCommand}"/>--><!--
                     <Button Style="{StaticResource bottomButton}" Content="About" Command="{Binding AboutCommand}"/>
-                    <!--<Button Style="{StaticResource bottomButton}" Content="Dashboard" Command="{Binding DashboardCommand}"/>-->
-                </StackPanel>
+                    --><!--<Button Style="{StaticResource bottomButton}" Content="Dashboard" Command="{Binding DashboardCommand}"/>--><!--
+                </StackPanel>-->
             </Grid>
         </Border>
     </Grid>

@@ -44,5 +44,21 @@ namespace OEE_dotNET.ViewModel
                 MessageBox.Show(ex.Message);
             }
         }
+
+        [RelayCommand]
+        private void Refresh() 
+        {
+            try
+            {
+                if (Total_Plan != null) 
+                {
+                    Total_Plan = DatabaseExcute_Main.Load_Total_Plan(From_date.ToString("dd/MM/yyyy"), To_date.ToString("dd/MM/yyyy"));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
