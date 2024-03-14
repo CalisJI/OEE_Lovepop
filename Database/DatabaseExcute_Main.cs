@@ -566,8 +566,95 @@ namespace OEE_dotNET.Database
                 connection.Close();
             }
         }
-        #endregion
 
+        public static DataTable Read_OEE_History(string from = "", string to = "")
+        {
+            var datatable = new DataTable();
+
+            MySqlConnection connection = new MySqlConnection(Str_connection);
+            try
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                    string? query = $"SELECT * FROM {lazer_tbl}";
+                    if(from == "" && to == "") 
+                    {
+                        var _to = DateTime.Now;
+                        var _from = _to.AddDays(-7);
+
+                        query += $" WHERE DATE_FORMAT(snap_time,'%d/%m/%y') BETWEEN '{_from.ToString("dd/MM/yyyy")}' AND '{_to.ToString("dd/MM/yyyy")}'";
+                    }
+                    else if(from != "" && to == "")
+                    {
+                        var _to = DateTime.Now;
+                        query += $" WHERE DATE_FORMAT(snap_time,'%d/%m/%y') BETWEEN '{from}' AND '{_to.ToString("dd/MM/yyyy")}'";
+                    }
+                    else if (from != "" && to != "")
+                    {
+                        query += $" WHERE DATE_FORMAT(snap_time,'%d/%m/%y') BETWEEN '{from}' AND '{to}'";
+                    }
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                string columnName = reader.GetName(i);
+                                datatable.Columns.Add(columnName);
+                            }
+
+                            while (reader.Read())
+                            {
+                                object[] values = new object[reader.FieldCount];
+                                reader.GetValues(values);
+                                datatable.Rows.Add(values);
+                            }
+                        }
+                    }
+                    return datatable;
+                }
+                else
+                {
+                    return datatable = new DataTable()
+                    {
+                        Columns =
+                        {
+                            new DataColumn("id",typeof(int)),
+                            new DataColumn("snap_time",typeof(DateTime)),
+                            new DataColumn("oee_rate",typeof(double)),
+                            new DataColumn("availability_rate",typeof(double)),
+                            new DataColumn("performance_rate",typeof(double)),
+                            new DataColumn("quality_rate",typeof(double))
+                        }
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return datatable = new DataTable()
+                {
+                    Columns =
+                    {
+                        new DataColumn("id",typeof(int)),
+                        new DataColumn("snap_time",typeof(DateTime)),
+                        new DataColumn("oee_rate",typeof(double)),
+                        new DataColumn("availability_rate",typeof(double)),
+                        new DataColumn("performance_rate",typeof(double)),
+                        new DataColumn("quality_rate",typeof(double))
+                    }
+                };
+
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        #endregion
 
         #region Plan state
         public static DataTable Load_Total_Plan(string from_date = "", string to_date = "", string mo_code = "")
