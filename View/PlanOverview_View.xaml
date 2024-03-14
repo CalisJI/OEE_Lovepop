@@ -30,15 +30,19 @@
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     Margin="10"/>
-                <DatePickerTextBox
-                VerticalAlignment="Center"/>
+                <DatePicker
+                    SelectedDate="{Binding From_date, StringFormat={}{0:dd/MM/yyyy}}"
+                    
+                    VerticalAlignment="Center"/>
 
                 <TextBlock 
                     Text="To:"
                     FontWeight="DemiBold"
                     VerticalAlignment="Center"
                     Margin="10"/>
-                <DatePickerTextBox
+                <DatePicker
+                    SelectedDate="{Binding To_date, StringFormat={}{0:dd/MM/yyyy}}"
+                    
                     VerticalAlignment="Center"/>
 
 
@@ -49,11 +53,15 @@
                     Width="50"
                     Height="25"
                     Content="Search" 
+                    Command="{Binding SearchCommand}"
                     Style="{StaticResource normalButton}"/>
             </StackPanel>
             
         </Grid>
         <DataGrid
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserResizeRows="False"
             AutoGenerateColumns="False"
             CanUserResizeColumns="False"
             Grid.Row="1" ItemsSource="{Binding Total_Plan}">

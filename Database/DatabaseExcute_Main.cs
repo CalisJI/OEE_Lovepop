@@ -570,7 +570,7 @@ namespace OEE_dotNET.Database
 
 
         #region Plan state
-        public static DataTable Load_Total_Plan()
+        public static DataTable Load_Total_Plan(string from_date = "", string to_date = "", string mo_code = "")
         {
             var datatable = new DataTable();
 
@@ -581,6 +581,26 @@ namespace OEE_dotNET.Database
                 {
                     connection.Open();
                     string? query = $"SELECT * FROM {total_plan}";
+
+                    if (from_date != null && from_date != "" && to_date != null && to_date != "")
+                    {
+                        if (mo_code == "") 
+                        {
+                            query += $" WHERE date_format(created_at,'%d/%m/%Y') BETWEEN '{from_date}' AND '{to_date}'";
+                        }
+                        else 
+                        {
+                            query += $" WHERE date_format(created_at,'%d/%m/%Y') BETWEEN '{from_date}' AND '{to_date}' AND mo_code = '{mo_code}'";
+                        }
+                    }
+                    else if (mo_code !=null && mo_code != "") 
+                    {
+                        query += $" WHERE mo_code = '{mo_code}'";
+                    }
+                    else 
+                    {
+                    
+                    }
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataReader reader = command.ExecuteReader())

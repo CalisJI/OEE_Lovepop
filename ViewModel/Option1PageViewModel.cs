@@ -27,6 +27,9 @@ namespace OEE_dotNET.ViewModel;
 public partial class Option1PageViewModel: ObservableObject
 {
     [ObservableProperty]
+    private string current_state = "Stop";
+
+    [ObservableProperty]
     private double running_time = 0;
     [ObservableProperty]
     private double pause_time = 0;
@@ -124,11 +127,35 @@ public partial class Option1PageViewModel: ObservableObject
         SeriesViews.FirstOrDefault(x => x.Title == "Pause Time").Values[0] = Pause_time;
         SeriesViews.FirstOrDefault(x => x.Title == "Stop Time").Values[0] = Stop_time;
 
-        OeeLine.Add(Oee);
-        AvailabilityLine.Add(Availability);
-        QualityLine.Add(Quality);
-        PerformanceLine.Add(Performance);
+        //OeeLine.Add(Oee);
+        //AvailabilityLine.Add(Availability);
+        //QualityLine.Add(Quality);
+        //PerformanceLine.Add(Performance);
     }
+
+    /// <summary>
+    /// Assign value from node-red to check status of machine 
+    /// </summary>
+    /// <param name="mode">Status: 0: Stop, 1:Run, 2:Pause</param>
+    private void Read_status(int mode) 
+    {
+        switch (mode)
+        {
+            case 0:
+                Current_state = "Stop";
+                break;
+            case 1:
+                Current_state = "Run";
+                break;
+            case 2:
+                Current_state = "Pause";
+                break;
+            default:
+                Current_state = "Stop";
+                break;
+        }
+    }
+
     private void CaculateTotal()
     {
         Total = Math.Round(Running_time + Pause_time + Stop_time, 2);

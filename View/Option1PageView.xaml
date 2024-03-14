@@ -101,7 +101,7 @@
                         VerticalAlignment="Center"/>
                     <TextBlock 
                         x:Name="txbl_status"
-                        Text="Run"
+                        Text="{Binding Current_state}"
                         FontWeight="SemiBold"
                         Foreground="White"
                         Background="{Binding ElementName=txbl_status, Path=Text, Converter={StaticResource CVT_Color_Staus}}"
