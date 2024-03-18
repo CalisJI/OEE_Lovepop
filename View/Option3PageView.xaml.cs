@@ -23,7 +23,7 @@ namespace OEE_dotNET.View
     {
         public Option3PageView()
         {
-            DataContext = new Option3PageViewModel();
+            //DataContext = new Option3PageViewModel();
             InitializeComponent();
         }
     }

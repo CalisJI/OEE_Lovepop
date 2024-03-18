@@ -56,7 +56,7 @@ namespace OEE_dotNET.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/OEE_dotNET;V1.0.0.0;component/view/planoverview_view.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/OEE_dotNET;component/view/planoverview_view.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\PlanOverview_View.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

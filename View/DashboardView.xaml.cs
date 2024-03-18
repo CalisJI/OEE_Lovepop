@@ -23,7 +23,7 @@ namespace OEE_dotNET.View
     {
         public DashboardView()
         {
-            DataContext = new DashboardViewModel();
+            //DataContext = new DashboardViewModel();
             InitializeComponent();
         }
     }

@@ -21,10 +21,11 @@ using System.Windows.Media;
 using System.Net.WebSockets;
 using System.Windows.Data;
 using System.Globalization;
+using System.Data;
 
 namespace OEE_dotNET.ViewModel;
 
-public partial class Option1PageViewModel: ObservableObject
+public partial class Option1PageViewModel: ObservableObject, IDisposable
 {
     [ObservableProperty]
     private string current_state = "Stop";
@@ -92,14 +93,19 @@ public partial class Option1PageViewModel: ObservableObject
     [ObservableProperty]
     private ChartValues<double> qualityLine = new ChartValues<double>();
 
+    DispatcherTimer timer = new DispatcherTimer();
     public Option1PageViewModel()
     {
-        DispatcherTimer timer = new DispatcherTimer();
+        //DispatcherTimer timer = new DispatcherTimer();
         timer.Interval = new TimeSpan(0, 0, 5);
         timer.Tick += Timer_Tick;
         timer.Start();
     }
-
+    ~Option1PageViewModel() 
+    {
+        timer.Tick -= Timer_Tick;
+        timer.Stop();
+    }
     private void Timer_Tick(object? sender, EventArgs e)
     {
         RandomeValue();
@@ -111,8 +117,8 @@ public partial class Option1PageViewModel: ObservableObject
         Stop_time = Math.Round(result.Item1 / 60,2);
         Running_time = Math.Round(result.Item2 / 60,2);
         Pause_time = Math.Round(result.Item3/ 60, 2);
-        Quantity_actual = Math.Round(result.Item4, 0);
-        Quantity_require = Math.Round(result.Item5, 0);
+        Quantity_actual = Math.Round(result.Item5, 0);
+        Quantity_require = Math.Round(result.Item6, 0);
 
         CaculateTotal();
         // Tính toán chỉ số OEE
@@ -127,10 +133,51 @@ public partial class Option1PageViewModel: ObservableObject
         SeriesViews.FirstOrDefault(x => x.Title == "Pause Time").Values[0] = Pause_time;
         SeriesViews.FirstOrDefault(x => x.Title == "Stop Time").Values[0] = Stop_time;
 
-        //OeeLine.Add(Oee);
+        //var data_line = DatabaseExcute_Main.Read_OEE_History();
+
+
         //AvailabilityLine.Add(Availability);
         //QualityLine.Add(Quality);
         //PerformanceLine.Add(Performance);
+        Update_ChartLine();
+    }
+    private void Update_ChartLine()
+    {
+        var data_line = Add_LineChart(DatabaseExcute_Main.Read_OEE_History());
+        OeeLine = data_line.Item1;
+        AvailabilityLine = data_line.Item2;
+        QualityLine = data_line.Item3;
+        PerformanceLine = data_line.Item4;
+    }
+
+    private (ChartValues<double>,ChartValues<double>,ChartValues<double>,ChartValues<double>) Add_LineChart(DataTable data) 
+    {
+        var oee_l = data.AsEnumerable().Select(row => Convert.ToDouble(row["oee_rate"])).ToList();
+        var avai_l = data.AsEnumerable().Select(row => Convert.ToDouble(row["availability_rate"])).ToList();
+        var quality_l = data.AsEnumerable().Select(row => Convert.ToDouble(row["quality_rate"])).ToList();
+        var perform_l = data.AsEnumerable().Select(row => Convert.ToDouble(row["performance_rate"])).ToList();
+
+        ChartValues<double> oee_Line = new ChartValues<double>();
+        ChartValues<double> availabilityLine = new ChartValues<double>();
+        ChartValues<double> qualityLine = new ChartValues<double>();
+        ChartValues<double> performanceLine = new ChartValues<double>();
+        foreach (var item in oee_l)
+        {
+            oee_Line.Add(item);
+        }
+        foreach (var item in avai_l)
+        {
+            availabilityLine.Add(item);
+        }
+        foreach (var item in quality_l)
+        {
+            qualityLine.Add(item);
+        }
+        foreach (var item in perform_l)
+        {
+            performanceLine.Add(item);
+        }
+        return (oee_Line, availabilityLine,qualityLine,performanceLine);
     }
 
     /// <summary>
@@ -183,6 +230,12 @@ public partial class Option1PageViewModel: ObservableObject
         var Oee_ratio = availability_ratio * quality_ratio * performance_ratio;
 
         return (Oee_ratio*100, availability_ratio*100, performance_ratio*100,quality_ratio*100);
+    }
+
+    public void Dispose()
+    {
+        timer.Tick -= Timer_Tick;
+        timer.Stop();
     }
 }
 

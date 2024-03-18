@@ -19,13 +19,24 @@ namespace OEE_dotNET.Database
 {
     public static class DatabaseExcute_Main
     {
-        private static string Password = "12345678";
-        private static string Host = "localhost";
-        private static string User = "root";
-        private static string Database = "workstation";
+        #region local host
+        //private static string Password = "12345678";
+        //private static string Host = "localhost";
+        //private static string User = "root";
+        //private static string Database = "workstation";
+        #endregion
+
+        #region Server host
+        private static string Password = "Fwdvina@2024";
+        private static string Host = "103.138.88.14";
+        private static string User = "fwd63823_FWDdemo";
+        private static string Database = "fwd63823_database";
+        #endregion
+
         private static string acounts_tbl = "accounts_tbl";
         private static string lazer_tbl = "lazer_configuration";
         private static string total_plan = "total_plan";
+        private static string oee_history = "oee_history";
         private static string Str_connection = "Server = " + Host + ";Database =" + Database + "; UId = " + User + "; Pwd = " + Password + "; Pooling = false; Character Set=utf8; SslMode=none";
 
 
@@ -437,7 +448,7 @@ namespace OEE_dotNET.Database
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static (double,double,double,double,double) Get_status_runtime() 
+        public static (double,double,double,double,double,double) Get_status_runtime() 
         {
 
             MySqlConnection connection = new MySqlConnection(Str_connection);
@@ -458,12 +469,13 @@ namespace OEE_dotNET.Database
                             SUM(CASE WHEN status = 0 THEN TIMESTAMPDIFF(SECOND, first_time, last_time) ELSE 0 END) AS total_time_status_0,
                             SUM(CASE WHEN status = 1 THEN TIMESTAMPDIFF(SECOND, first_time, last_time) ELSE 0 END) AS total_time_status_1,
                             SUM(CASE WHEN status = 2 THEN TIMESTAMPDIFF(SECOND, first_time, last_time) ELSE 0 END) AS total_time_status_2,
+                            SUM(CASE WHEN status = 3 THEN TIMESTAMPDIFF(SECOND, first_time, last_time) ELSE 0 END) AS total_time_status_3,
                             SUM(quantity_actual) AS actual,
                             AVG(quantity_require) AS average_require
                         FROM 
                             machine_data_runtime
                         WHERE 
-                        status IN (0, 1, 2);";
+                        status IN (0, 1, 2, 3);";
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataReader reader = command.ExecuteReader())
@@ -473,20 +485,22 @@ namespace OEE_dotNET.Database
                                 int totalTimeStatus0Seconds = Convert.ToInt32(reader["total_time_status_0"]);
                                 int totalTimeStatus1Seconds = Convert.ToInt32(reader["total_time_status_1"]);
                                 int totalTimeStatus2Seconds = Convert.ToInt32(reader["total_time_status_2"]);
+                                int totalTimeStatus3Seconds = Convert.ToInt32(reader["total_time_status_3"]);
                                 int actual = Convert.ToInt32(reader["actual"]);
                                 double require = Convert.ToDouble(reader["average_require"]);
                                 TimeSpan totalTimeStatus0 = TimeSpan.FromSeconds(totalTimeStatus0Seconds);
                                 TimeSpan totalTimeStatus1 = TimeSpan.FromSeconds(totalTimeStatus1Seconds);
                                 TimeSpan totalTimeStatus2 = TimeSpan.FromSeconds(totalTimeStatus2Seconds);
-
+                                TimeSpan totalTimeStatus3 = TimeSpan.FromSeconds(totalTimeStatus3Seconds);
                                 Debug.WriteLine($"Total time in status 0: {totalTimeStatus0}");
                                 Debug.WriteLine($"Total time in status 1: {totalTimeStatus1}");
                                 Debug.WriteLine($"Total time in status 2: {totalTimeStatus2}");
-                                return (totalTimeStatus0Seconds,totalTimeStatus1Seconds,totalTimeStatus2Seconds,actual,require);
+                                Debug.WriteLine($"Total time in status 3: {totalTimeStatus3}");
+                                return (totalTimeStatus0Seconds,totalTimeStatus1Seconds,totalTimeStatus2Seconds,totalTimeStatus3Seconds,actual,require);
                             }
                             else 
                             {
-                                return (0, 0, 0, 0, 0);
+                                return (0, 0, 0, 0, 0,0);
                             }
                         }
                     }
@@ -494,7 +508,7 @@ namespace OEE_dotNET.Database
                 else
                 {
                     Console.WriteLine("Error Connect");
-                    return (0, 0, 0, 0, 0);
+                    return (0, 0, 0, 0, 0,0);
                 }
             }
             catch (Exception ex)
@@ -577,22 +591,22 @@ namespace OEE_dotNET.Database
                 if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
-                    string? query = $"SELECT * FROM {lazer_tbl}";
+                    string? query = $"SELECT * FROM {oee_history}";
                     if(from == "" && to == "") 
                     {
                         var _to = DateTime.Now;
                         var _from = _to.AddDays(-7);
 
-                        query += $" WHERE DATE_FORMAT(snap_time,'%d/%m/%y') BETWEEN '{_from.ToString("dd/MM/yyyy")}' AND '{_to.ToString("dd/MM/yyyy")}'";
+                        query += $" WHERE date_format(snap_time,'%d/%m/%y') BETWEEN '{_from.ToString("dd/MM/yyyy")}' AND '{_to.ToString("dd/MM/yyyy")}'";
                     }
                     else if(from != "" && to == "")
                     {
                         var _to = DateTime.Now;
-                        query += $" WHERE DATE_FORMAT(snap_time,'%d/%m/%y') BETWEEN '{from}' AND '{_to.ToString("dd/MM/yyyy")}'";
+                        query += $" WHERE date_format(snap_time,'%d/%m/%y') BETWEEN '{from}' AND '{_to.ToString("dd/MM/yyyy")}'";
                     }
                     else if (from != "" && to != "")
                     {
-                        query += $" WHERE DATE_FORMAT(snap_time,'%d/%m/%y') BETWEEN '{from}' AND '{to}'";
+                        query += $" WHERE date_format(snap_time,'%d/%m/%y') BETWEEN '{from}' AND '{to}'";
                     }
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {

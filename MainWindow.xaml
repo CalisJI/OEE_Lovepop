@@ -80,7 +80,13 @@
         <!--Content Page-->
         <Grid
             Grid.Row="1" Visibility="{Binding LoggedIn, Converter={StaticResource Booltovis}}">
-            <ContentControl Content="{Binding View1}"/>
+            <ContentControl Content="{Binding View1}">
+                <!--<behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="SourceUpdated">
+                        <behavior:InvokeCommandAction Command="{Binding ViewChangedCommand}"/>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>-->
+            </ContentControl>
         </Grid>
 
         <!--Middle Section-->

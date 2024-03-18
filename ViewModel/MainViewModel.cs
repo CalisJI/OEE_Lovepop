@@ -2,8 +2,10 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.AspNetCore.Identity;
 using OEE_dotNET.Database;
+using OEE_dotNET.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security;
@@ -60,7 +62,12 @@ public partial class MainViewModel : ObservableObject
         Login(false);
         DatabaseExcute_Main.Current_User = null;
         View1 = null;
-
+        option1PageView?.Dispose();
+        option1PageView = null;
+        option2PageView = null;
+        option3PageView = null;
+        dashboardView = null;
+        planOverview_View = null;
     }
 
     [RelayCommand]
@@ -96,6 +103,7 @@ public partial class MainViewModel : ObservableObject
         {
             View1 = dashboardView;
         }
+        option1PageView = null;
     }
     [RelayCommand]
     public void Log_In() 
@@ -199,6 +207,12 @@ public partial class MainViewModel : ObservableObject
     {
         // Do some stuff...
     }
+    [RelayCommand]
+    public void  ViewChanged() 
+    {
+        Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")} - View Changed");
+    }
+
 
 
     private void Login(bool loggedIn)
