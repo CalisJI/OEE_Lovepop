@@ -25,6 +25,13 @@ public partial class MainViewModel : ObservableObject
     Option3PageViewModel? option3PageView;
     DashboardViewModel? dashboardView;
     PlanOverview_ViewModel? planOverview_View;
+    Create_Account_Window_View? Create_Account_WD;
+    SettingWindow_View? settingWindow_WD;
+    [ObservableProperty]
+    private bool can_access_dashboard = false;
+    [ObservableProperty]
+    private string pw = "12344";
+
     [ObservableProperty]
     private string? aboutcontent = "About company";
 
@@ -86,9 +93,13 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void Home() 
+    public void Open_settings() 
     {
-        
+        if(settingWindow_WD == null) 
+        {
+            settingWindow_WD = new SettingWindow_View();
+            settingWindow_WD.ShowDialog();
+        }
     }
     [RelayCommand]
     public void Monitoring() 
@@ -105,6 +116,13 @@ public partial class MainViewModel : ObservableObject
         }
         option1PageView = null;
     }
+    [RelayCommand]
+    public void Open_Create_Form() 
+    {
+        Create_Account_WD = new Create_Account_Window_View();
+        Create_Account_WD.ShowDialog();
+    }
+
     [RelayCommand]
     public void Log_In() 
     {
@@ -126,8 +144,9 @@ public partial class MainViewModel : ObservableObject
                     {
                         View1 = option1PageView;
                     }
+                    Can_access_dashboard = true;
                 }
-                else if(DatabaseExcute_Main.Current_User.Permission == "Operator")
+                else if(DatabaseExcute_Main.Current_User.Permission == "Superviser")
                 {
                     Login(true);
                     if (planOverview_View == null)
@@ -139,6 +158,7 @@ public partial class MainViewModel : ObservableObject
                     {
                         View1 = planOverview_View;
                     }
+                    Can_access_dashboard = true;
                 }
                 else if (DatabaseExcute_Main.Current_User.Permission == "Plan")
                 {
@@ -226,6 +246,7 @@ public partial class MainViewModel : ObservableObject
         {
             LoggedIn = false;
             LoggedOut = true;
+            Can_access_dashboard = false;
         }
         
     }

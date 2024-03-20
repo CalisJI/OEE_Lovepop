@@ -42,7 +42,7 @@ namespace OEE_dotNET.API
 
                     while (true)
                     {
-                        var topic = subscriber.ReceiveFrameString();
+                        topic = subscriber.ReceiveFrameString();
                         var msg = subscriber.ReceiveFrameString();
                         Debug.WriteLine("From Publisher: {0} {1}", topic, msg);
                     }

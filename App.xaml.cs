@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Windows;
+using OEE_dotNET.Control;
 
 namespace OEE_dotNET
 {
@@ -15,6 +16,7 @@ namespace OEE_dotNET
         public App()
         {
             Debug.WriteLine(DatabaseExcute_Main.Check_Database().ToString());
+            ApplicationConfig.GetConfig();
             //Test
             //Publisher.Initialize_Req_Res();
             //Publisher.Initialize_Subcriber();

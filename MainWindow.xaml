@@ -18,12 +18,13 @@
         AllowsTransparency="True">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Booltovis"/>
+        <materialdesigned:BooleanToVisibilityConverter x:Key="B2V"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0.08*"/>
+            <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
         <!--Top Section-->
         <Border
@@ -36,6 +37,7 @@
             MouseLeftButtonDown="Border_MouseLeftButtonDown">
             <Grid>
                 <materialdesigned:PopupBox 
+                    Visibility="{Binding LoggedIn, Converter={StaticResource B2V}}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="0 0 10 0"
@@ -45,16 +47,17 @@
                     </materialdesigned:PopupBox.ToggleContent>
                     <StackPanel Orientation="Vertical" Background="#e1e3e3">
                         <Button Content="Account" FontWeight="DemiBold"/>
-                        <Button Content="Settings" FontWeight="DemiBold"/>
+                        <Button Content="Settings" FontWeight="DemiBold" Command="{Binding Open_settingsCommand}"/>
                         <Button Content="Log out" FontWeight="DemiBold" Command="{Binding LogoutCommand}"/>
                         <Button Content="Exit" FontWeight="DemiBold" Command="{Binding ExitCommand}"/>
                     </StackPanel>
                 </materialdesigned:PopupBox>
-                <Button Style="{StaticResource topButton}" HorizontalAlignment="Left" >
+                <!--<Button Style="{StaticResource topButton}" HorizontalAlignment="Left" >
                     
-                </Button>
+                </Button>-->
 
                 <materialdesigned:PopupBox 
+                    Visibility="{Binding Can_access_dashboard, Converter={StaticResource B2V}}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Margin="10 0 0 0"
@@ -63,7 +66,7 @@
                         <Icon:PackIconMaterial Kind="Menu" Foreground="#ff131f"/>
                     </materialdesigned:PopupBox.ToggleContent>
                     <StackPanel Orientation="Vertical" Background="#e1e3e3">
-                        <Button Content="Home" FontWeight="DemiBold"/>
+                        <!--<Button Content="Home" FontWeight="DemiBold"/>-->
                         <Button Content="Dashboard" FontWeight="DemiBold" Command="{Binding DashboardCommand}"/>
                         <Button Content="Mornitoring" FontWeight="DemiBold" Command="{Binding MonitoringCommand}"/>
                         <Button Content="About" FontWeight="DemiBold" Command="{Binding AboutCommand}"/>
@@ -200,6 +203,7 @@
                     
                     <!--Long Button-->
                     <Button 
+                        Command="{Binding Open_Create_FormCommand}"
                         Style="{StaticResource mainButtonLong}"
                         Content="Create an account"/>
                 </StackPanel>
@@ -213,14 +217,14 @@
             BorderThickness="0 2 0 0"
             BorderBrush="#e2e9e9"
             CornerRadius="5 5 0 0"
-            Padding="10"
+            Padding="5"
             Background="White">
             <Grid>
                 <!--Copyright text-->
                 <TextBlock Margin="15 0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
-                           FontSize="13"
+                           FontSize="11"
                            Foreground="#909090"
                            Text="Copyright © 2024. All right reserved "/>
 

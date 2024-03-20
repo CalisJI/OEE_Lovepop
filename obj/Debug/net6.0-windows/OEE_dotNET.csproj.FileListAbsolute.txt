@@ -156,3 +156,7 @@ F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\MaterialDesignC
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\PlanOverview_View.g.cs
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\PlanOverview_View.baml
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\Create_Account_Window_View.g.cs
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\Create_Account_Window_View.baml
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\SettingWindow_View.g.cs
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\SettingWindow_View.baml

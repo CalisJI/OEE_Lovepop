@@ -97,6 +97,12 @@
                     </Setter.Value>
                 </Setter>-->
     </Style>
+
+    <Style x:Key="nomal_txtbox" TargetType="TextBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#707070"/>
+
+    </Style>
     <Style x:Key="normaltexbox" TargetType="TextBox">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#707070"/>

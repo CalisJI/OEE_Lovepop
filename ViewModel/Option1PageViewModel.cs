@@ -22,6 +22,7 @@ using System.Net.WebSockets;
 using System.Windows.Data;
 using System.Globalization;
 using System.Data;
+using CommunityToolkit.Mvvm.Input;
 
 namespace OEE_dotNET.ViewModel;
 
@@ -36,6 +37,8 @@ public partial class Option1PageViewModel: ObservableObject, IDisposable
     private double pause_time = 0;
     [ObservableProperty]
     private double stop_time = 0;
+    [ObservableProperty]
+    private double error_time = 0;
     [ObservableProperty]
     private double quantity_actual = 0;
     [ObservableProperty]
@@ -52,6 +55,12 @@ public partial class Option1PageViewModel: ObservableObject, IDisposable
     private double quality = 0;
     [ObservableProperty]
     private double total = 0;
+
+    [ObservableProperty]
+    private DateTime from = DateTime.Now.AddDays(-7);
+
+    [ObservableProperty]
+    private DateTime to = DateTime.Now;
 
     public Func<double, string> Formatter { get; set; } = value => value.ToString() + "%";
 
@@ -79,6 +88,13 @@ public partial class Option1PageViewModel: ObservableObject, IDisposable
             Values = new ChartValues<double>{100},
             DataLabels = true,
             Fill = Brushes.Red
+        },
+        new PieSeries
+        {
+            Title = "Error Time",
+            Values = new ChartValues<double>{100},
+            DataLabels = true,
+            Fill = new SolidColorBrush(Color.FromRgb(0xe3,0xdf,0x00))
         }
     };
     [ObservableProperty]
@@ -93,6 +109,7 @@ public partial class Option1PageViewModel: ObservableObject, IDisposable
     [ObservableProperty]
     private ChartValues<double> qualityLine = new ChartValues<double>();
 
+    private bool applied = false;
     DispatcherTimer timer = new DispatcherTimer();
     public Option1PageViewModel()
     {
@@ -106,6 +123,13 @@ public partial class Option1PageViewModel: ObservableObject, IDisposable
         timer.Tick -= Timer_Tick;
         timer.Stop();
     }
+    [RelayCommand]
+    private void Apply_range() 
+    {
+        applied = true;
+    }
+
+
     private void Timer_Tick(object? sender, EventArgs e)
     {
         RandomeValue();
@@ -113,10 +137,19 @@ public partial class Option1PageViewModel: ObservableObject, IDisposable
 
     private void RandomeValue() 
     {
-        var result = DatabaseExcute_Main.Get_status_runtime();
+        (double,double,double,double,double,double) result;
+        if (applied) 
+        {
+            result = DatabaseExcute_Main.Get_status_runtime(From,To);
+        }
+        else 
+        {
+            result = DatabaseExcute_Main.Get_status_runtime();
+        }
         Stop_time = Math.Round(result.Item1 / 60,2);
         Running_time = Math.Round(result.Item2 / 60,2);
         Pause_time = Math.Round(result.Item3/ 60, 2);
+        Error_time = Math.Round(result.Item4 / 60, 2);
         Quantity_actual = Math.Round(result.Item5, 0);
         Quantity_require = Math.Round(result.Item6, 0);
 
@@ -132,6 +165,7 @@ public partial class Option1PageViewModel: ObservableObject, IDisposable
         SeriesViews.FirstOrDefault(x => x.Title == "Running Time").Values[0] = Running_time;
         SeriesViews.FirstOrDefault(x => x.Title == "Pause Time").Values[0] = Pause_time;
         SeriesViews.FirstOrDefault(x => x.Title == "Stop Time").Values[0] = Stop_time;
+        SeriesViews.FirstOrDefault(x => x.Title == "Error Time").Values[0] = Error_time;
 
         //var data_line = DatabaseExcute_Main.Read_OEE_History();
 
@@ -197,6 +231,9 @@ public partial class Option1PageViewModel: ObservableObject, IDisposable
             case 2:
                 Current_state = "Pause";
                 break;
+            case 3:
+                Current_state = "Error";
+                break;
             default:
                 Current_state = "Stop";
                 break;
@@ -248,6 +285,7 @@ public class Status_color : IValueConverter
             "Run" => Brushes.Green,
             "Pause" => Brushes.Orange,
             "Stop" => Brushes.Red,
+            "Error" => Brushes.Red,
             _ => Brushes.Gray,
         };
     }

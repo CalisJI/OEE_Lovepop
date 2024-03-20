@@ -49,6 +49,7 @@ namespace OEE_dotNET.Database
 
         #region Login Databse action
         public static Accounts? Current_User = null;
+        public static string Authentication_permission = "";
         public static bool Check_Database()
         {
             MySqlConnection connection = new MySqlConnection(Str_connection);
@@ -89,7 +90,7 @@ namespace OEE_dotNET.Database
             }
         }
 
-        public static void Login_User(string? username, string? password)
+        public static void Login_User(string? username, string? password, bool admin_authentic = false)
         {
             MySqlConnection connection = new MySqlConnection(Str_connection);
             try
@@ -113,6 +114,10 @@ namespace OEE_dotNET.Database
                                 Permission = reader.GetString("permission")
                             };
                             Current_User = accounts;
+                            if (admin_authentic) 
+                            {
+                                Authentication_permission = accounts.Permission;
+                            }
                         }
                         else
                         {
@@ -133,7 +138,7 @@ namespace OEE_dotNET.Database
                 connection.Close();
             }
         }
-        public static void User_register(string username, string password, string email, string permission)
+        public static void User_register(string username, string password, string email, string? permission)
         {
             MySqlConnection connection = new MySqlConnection(Str_connection);
             try
@@ -448,7 +453,7 @@ namespace OEE_dotNET.Database
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static (double,double,double,double,double,double) Get_status_runtime() 
+        public static (double,double,double,double,double,double) Get_status_runtime(DateTime From = new DateTime() ,DateTime To = new DateTime()) 
         {
 
             MySqlConnection connection = new MySqlConnection(Str_connection);
@@ -463,8 +468,13 @@ namespace OEE_dotNET.Database
                     // "SUM(TIMESTAMPDIFF(SECOND,first_time,last_time)) AS total_pending_time "+
                     // $"FROM {Machine_rumtime_tbl} "+
                     // "WHERE status = 1";
+                    string filter = "";
+                    if(From!=new DateTime() && To!= new DateTime())
+                    {
+                        filter = $" AND date_format(first_time,'%d/%m/%y') >= '{From.ToString("dd/MM/yyyy")}' AND date_format(last_time,'%d/%m/%y') <= '{To.ToString("dd/MM/yyyy")}'";
+                    }
 
-                    string query = @"
+                    string query = $@"
                         SELECT 
                             SUM(CASE WHEN status = 0 THEN TIMESTAMPDIFF(SECOND, first_time, last_time) ELSE 0 END) AS total_time_status_0,
                             SUM(CASE WHEN status = 1 THEN TIMESTAMPDIFF(SECOND, first_time, last_time) ELSE 0 END) AS total_time_status_1,
@@ -475,7 +485,7 @@ namespace OEE_dotNET.Database
                         FROM 
                             machine_data_runtime
                         WHERE 
-                        status IN (0, 1, 2, 3);";
+                        status IN (0, 1, 2, 3){filter};";
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataReader reader = command.ExecuteReader())
