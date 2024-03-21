@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OEE_dotNET.View"
         mc:Ignorable="d"
+        Icon="/ico/account.ico"
         xmlns:vm="clr-namespace:OEE_dotNET.ViewModel"
         d:DataContext="{d:DesignInstance Type=vm:Create_Account_ViewModel}"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OEE_dotNET.View"
         mc:Ignorable="d"
+        Icon="/ico/setting-19.ico"
         xmlns:vm="clr-namespace:OEE_dotNET.ViewModel"
         d:DataContext="{d:DesignInstance Type=vm:SettingWindowViewModel}"
         WindowStartupLocation="CenterScreen"
@@ -38,13 +39,28 @@
             <Grid Margin="10">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                     <TextBlock Text="Machine ID:" FontWeight="DemiBold" VerticalAlignment="Center"/>
-                    <TextBox
+                    <!--<TextBox
                         Margin="10 0 0 0"
                         Width="150"
                         Text="{Binding Machine_id}"
                         Style="{StaticResource nomal_txtbox}"
                         VerticalAlignment="Center"
-                        HorizontalContentAlignment="Left"/>
+                        HorizontalContentAlignment="Left"/>-->
+                    <ComboBox
+                        x:Name="cbbx_machine_id"
+                        ItemsSource="{Binding List_machine_id}"
+                        Margin="10 0 0 0"
+                        Width="150"
+                        VerticalAlignment="Center">
+                        <behavior:Interaction.Triggers>
+                            <behavior:EventTrigger EventName="SelectionChanged">
+                                <behavior:InvokeCommandAction
+                                    Command="{Binding SelectionChangedCommand}"
+                                    CommandParameter="{Binding ElementName=cbbx_machine_id, Path=SelectedItem}"/>
+                            </behavior:EventTrigger>
+                        </behavior:Interaction.Triggers>
+                    </ComboBox>
+
                 </StackPanel>
             </Grid>
         </Border>

@@ -160,3 +160,4 @@ F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\Create_Acc
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\Create_Account_Window_View.baml
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\SettingWindow_View.g.cs
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\SettingWindow_View.baml
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\ico\scan-market-ecommerce-svgrepo-com.ico

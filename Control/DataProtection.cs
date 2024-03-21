@@ -78,18 +78,27 @@ namespace OEE_dotNET.Control
             byte[] toEncrypt = Encoding.ASCII.GetBytes(data);
             FileStream fStream = new FileStream(ApplicationConfig.Datapath, FileMode.OpenOrCreate);
             ApplicationConfig.SettingParameter.DecrypLength = EncryptDataToStream(toEncrypt, s_additionalEntropy, DataProtectionScope.CurrentUser, fStream);
+            ApplicationConfig.UpdateConfig(ApplicationConfig.SettingParameter);
             fStream.Close();
             //Console.WriteLine(bytesWritten);
         }
 
         public static string ReadProtectData() 
         {
-            FileStream fStream = new FileStream(ApplicationConfig.Datapath, FileMode.Open);
+            if (File.Exists(ApplicationConfig.Datapath)) 
+            {
+                FileStream fStream = new FileStream(ApplicationConfig.Datapath, FileMode.Open);
 
-            // Read from the stream and decrypt the data.
-            byte[] decryptData = DecryptDataFromStream(s_additionalEntropy, DataProtectionScope.CurrentUser, fStream, ApplicationConfig.SettingParameter.DecrypLength);
-            fStream.Close();
-            return Encoding.ASCII.GetString(decryptData);
+                // Read from the stream and decrypt the data.
+                byte[] decryptData = DecryptDataFromStream(s_additionalEntropy, DataProtectionScope.CurrentUser, fStream, ApplicationConfig.SettingParameter.DecrypLength);
+                fStream.Close();
+                return Encoding.ASCII.GetString(decryptData);
+            }
+            else 
+            {
+                return ":";
+            }
+           
         }
     }
 }

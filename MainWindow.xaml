@@ -15,7 +15,8 @@
         WindowStyle="None"
         xmlns:materialdesigned = "http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Loaded="Window_Loaded">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Booltovis"/>
         <materialdesigned:BooleanToVisibilityConverter x:Key="B2V"/>
@@ -126,12 +127,22 @@
                                    Visibility="{Binding ElementName=txtboxUser, Path=Text.IsEmpty, Converter={StaticResource Booltovis}}"/>
                         <TextBox
                             Text="{Binding Username}"
-                            x:Name="txtboxUser"/>
+                            x:Name="txtboxUser">
+                            <behavior:Interaction.Triggers>
+                                <behavior:EventTrigger EventName="Loaded">
+                                    <behavior:InvokeCommandAction
+                                        Command="{Binding Txtbox_UserLoadCommand}"
+                                        CommandParameter="{Binding ElementName=txtboxUser}"/>
+                                </behavior:EventTrigger>
+                            </behavior:Interaction.Triggers>
+                        </TextBox>
                         <Icon:PackIconMaterial Kind="EmailVariant"
                                                Width="15"
                                                Foreground="#c7c7c7"
                                                VerticalAlignment="Center"
                                                Margin="10 0 0 0"/>
+
+
                     </Grid>
                     
                     <!--Password Textbox-->
@@ -157,6 +168,10 @@
                                     <behavior:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
                                                                   CommandParameter="{Binding ElementName=txtboxpass}"/>
                                 </behavior:EventTrigger>
+                                <behavior:EventTrigger EventName="Loaded">
+                                    <behavior:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                                  CommandParameter="{Binding ElementName=txtboxpass}"/>
+                                </behavior:EventTrigger>
                             </behavior:Interaction.Triggers>
                         </PasswordBox>
                       
@@ -166,7 +181,11 @@
                                                Margin="10 0 0 0"
                                                VerticalAlignment="Center"/>
                     </Grid>
-                    <CheckBox Content="Remember me" Margin="0 10 0 5" IsChecked="True"/>
+                    <CheckBox
+                        x:Name="checkbox_remember"
+                        IsChecked="{Binding Remember_me}"
+                        Content="Remember me"
+                        Margin="0 10 0 5"/>
                     <Grid Margin="0 10 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>

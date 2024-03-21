@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.AspNetCore.Identity;
+using OEE_dotNET.Control;
 using OEE_dotNET.Database;
 using OEE_dotNET.View;
 using System;
@@ -27,6 +28,10 @@ public partial class MainViewModel : ObservableObject
     PlanOverview_ViewModel? planOverview_View;
     Create_Account_Window_View? Create_Account_WD;
     SettingWindow_View? settingWindow_WD;
+
+    [ObservableProperty]
+    private bool remember_me = false;
+
     [ObservableProperty]
     private bool can_access_dashboard = false;
     [ObservableProperty]
@@ -186,6 +191,7 @@ public partial class MainViewModel : ObservableObject
                         View1 = option3PageView;
                     }
                 }
+
             }
 
         }
@@ -221,6 +227,15 @@ public partial class MainViewModel : ObservableObject
             }
         }
     }
+    [RelayCommand]
+    public void Txtbox_UserLoad(object p) 
+    {
+        var txtbox_user = p as TextBox;
+        if (txtbox_user != null) 
+        {
+            Username = txtbox_user.Text;
+        }
+    }
 
     [RelayCommand]
     public void Create_account() 
@@ -241,6 +256,11 @@ public partial class MainViewModel : ObservableObject
         {
             LoggedIn = true;
             LoggedOut = false;
+            ApplicationConfig.SettingParameter.Remember_me = Remember_me;
+            if (Remember_me) 
+            {
+                DataProtection.WriteData($"{Username}:{password}");
+            }
         }
         else 
         {

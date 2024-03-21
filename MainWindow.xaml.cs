@@ -1,4 +1,5 @@
-﻿using OEE_dotNET.ViewModel;
+﻿using OEE_dotNET.Control;
+using OEE_dotNET.ViewModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -54,7 +55,18 @@ namespace OEE_dotNET
 
         private void txtboxpass_PasswordChanged(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            checkbox_remember.IsChecked = ApplicationConfig.SettingParameter.Remember_me;
+            if (ApplicationConfig.SettingParameter.Remember_me) 
+            {
+                var data = DataProtection.ReadProtectData().Split(':');
+                txtboxUser.Text = data[0];
+                txtboxpass.Password = data[1];
+            }
         }
     }
 }

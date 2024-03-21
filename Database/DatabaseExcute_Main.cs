@@ -14,6 +14,7 @@ using System.Data;
 using Org.BouncyCastle.Asn1.X509.Qualified;
 using OEE_dotNET.ViewModel;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace OEE_dotNET.Database
 {
@@ -676,6 +677,47 @@ namespace OEE_dotNET.Database
             {
                 connection.Close();
             }
+        }
+
+        public static ObservableCollection<string> GetMachineId()
+        {
+            ObservableCollection<string> uniqueValues = new ObservableCollection<string>();
+            HashSet<string> seenValues = new HashSet<string>();
+            MySqlConnection connection = new MySqlConnection(Str_connection);
+            try
+            {
+                
+                if(connection.State == ConnectionState.Closed) 
+                {
+                    connection.Open();
+
+                    string sql = $"SELECT DISTINCT machine_id FROM {total_plan}";
+                    using (var command = new MySqlCommand(sql, connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string value = reader.GetString(0);
+                                if (seenValues.Add(value)) // Add returns true if the value is unique
+                                {
+                                    uniqueValues.Add(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally 
+            {
+                connection.Close();
+            }
+           
+            return uniqueValues;
         }
 
         #endregion
