@@ -21,6 +21,7 @@
     <None Remove="Image\iotimg.jpg" />
     <None Remove="Image\login.png" />
     <None Remove="Image\plan.png" />
+    <None Remove="Image\superviser.png" />
     <None Remove="Image\technical.png" />
     <None Remove="View\Option1PageView.xaml~RF4b55db61.TMP" />
   </ItemGroup>
@@ -66,6 +67,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\plan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\superviser.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\technical.png">
