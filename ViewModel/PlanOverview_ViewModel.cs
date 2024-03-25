@@ -14,6 +14,7 @@ namespace OEE_dotNET.ViewModel
 {
     public partial class PlanOverview_ViewModel:ObservableObject
     {
+
         [ObservableProperty]
         private DataTable? total_Plan;
         [ObservableProperty]

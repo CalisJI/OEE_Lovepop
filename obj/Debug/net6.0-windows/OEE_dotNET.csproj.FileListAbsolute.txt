@@ -15,7 +15,6 @@ F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.Gene
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.AssemblyInfoInputs.cache
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.AssemblyInfo.cs
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.csproj.CoreCompileInputs.cache
-F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.csproj.CopyComplete
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.dll
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\refint\OEE_dotNET.dll
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.pdb
@@ -161,3 +160,5 @@ F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\Create_Acc
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\SettingWindow_View.g.cs
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\SettingWindow_View.baml
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\ico\scan-market-ecommerce-svgrepo-com.ico
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.sourcelink.json
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.csproj.Up2Date

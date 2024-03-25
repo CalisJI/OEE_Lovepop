@@ -96,12 +96,12 @@
                                     Visibility="Visible"
                                     Minimum="0"
                                     Maximum="100"
-                                    Value="{Binding state}"/>
+                                    Value="{Binding process_percent}"/>
                                 <TextBlock 
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            TextAlignment="Center">
-                                    <Run Text="{Binding state}"/>
+                                    <Run Text="{Binding process_percent}"/>
                                     <Run Text="%"/>
                                 </TextBlock>
                             </Grid>

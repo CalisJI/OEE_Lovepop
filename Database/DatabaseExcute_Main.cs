@@ -124,8 +124,8 @@ namespace OEE_dotNET.Database
                         {
                             // Raise
                             // Username or Password is incorrect
-                            throw new Exception("Username or Password is incorret");
-                            //MessageBox.Show("Username or Password is incorret");
+                            throw new Exception("Username or Password is incorrect");
+                            //MessageBox.Show("Username or Password is incorrect");
                         }
                     }
                 }
@@ -790,7 +790,8 @@ namespace OEE_dotNET.Database
                             new DataColumn("filename",typeof(string)),
                             new DataColumn("quantity",typeof(int)),
                             new DataColumn("machine_id",typeof (string)),
-                            new DataColumn("state",typeof(double))
+                            new DataColumn("process_percent",typeof(double)),
+                            new DataColumn("status",typeof(int))
                         }
                     };
                 }
@@ -812,7 +813,8 @@ namespace OEE_dotNET.Database
                         new DataColumn("filename",typeof(string)),
                         new DataColumn("quantity",typeof(int)),
                         new DataColumn("machine_id",typeof (string)),
-                        new DataColumn("state",typeof(double))
+                        new DataColumn("process_percent",typeof(double)),
+                        new DataColumn("status",typeof(int))
                     }
                 };
 
@@ -823,6 +825,8 @@ namespace OEE_dotNET.Database
                 connection.Close();
             }
         }
+
+
         #endregion
     }
 }

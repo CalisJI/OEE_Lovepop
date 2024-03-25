@@ -17,7 +17,11 @@
     <None Remove="ico\account.ico" />
     <None Remove="ico\oee.ico" />
     <None Remove="ico\setting-19.ico" />
+    <None Remove="Image\dashboard.png" />
     <None Remove="Image\iotimg.jpg" />
+    <None Remove="Image\login.png" />
+    <None Remove="Image\plan.png" />
+    <None Remove="Image\technical.png" />
     <None Remove="View\Option1PageView.xaml~RF4b55db61.TMP" />
   </ItemGroup>
 
@@ -52,8 +56,20 @@
     <Resource Include="ico\setting-19.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Image\dashboard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Image\iotimg.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\login.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\plan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\technical.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

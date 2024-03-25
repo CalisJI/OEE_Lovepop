@@ -30,7 +30,7 @@ namespace OEE_dotNET.API
                 }
             });
         }
-        //Subscriber --- use in sebcriber mode (Workstaion mode)
+        //Subscriber --- use in subscriber mode (Workstation mode)
         public static void Initialize_Subcriber(string topic) 
         {
             Task.Run(() =>
@@ -49,9 +49,9 @@ namespace OEE_dotNET.API
                 }
             });
         }
-        //Pubnlisher use in Plan option
+        //Publisher use in Plan option
         /// <summary>
-        /// Publish message to subsrcibers in network (Workstation node)
+        /// Publish message to subscribers in network (Workstation node)
         /// </summary>
         /// <param name="mQMessage"></param>
         public static async Task Publisher_MQ(MQMessage mQMessage) 
