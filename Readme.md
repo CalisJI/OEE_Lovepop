@@ -1,7 +1,7 @@
 # OEE Application
 https://github.com/CalisJI/OEE_Lovepop.git
 
-# Screenshot
+## Screenshot
 ![](./Image/webdb.png)
 ![](./Image/dashboard.png)
 ![](./Image/login.png)
@@ -10,7 +10,7 @@ https://github.com/CalisJI/OEE_Lovepop.git
 ![](./Image/technical.png)
 
 
-# NuGet Were Utilized
+## NuGet Were Utilized
 - [MVVM Toolkit](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/)
 - [LiveCharts](https://v0.lvcharts.com/App/examples/v1/Wpf/Install)
 - [Microsoft.Xaml.Behaviors.Wpf](https://github.com/Microsoft/XamlBehaviorsWpf?tab=readme-ov-file)
@@ -19,7 +19,7 @@ https://github.com/CalisJI/OEE_Lovepop.git
 - [Microsoft.AspNet.WebApi.Owin](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
 - [Microsoft.AspNet.WebApi.OwinSelfHost](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
 - [NetMQ](https://netmq.readthedocs.io/en/latest/pub-sub/)
-# API 
+## API 
 - using RESTFul API to communicate with another application like (Node-red, web API, etc...)
 - Using These NuGet: Microsoft.AspNet.WebApi.Owin; Microsoft.Owin.Host.HttpListener; Microsoft.Owin.Hosting; Microsoft.AspNet.WebApi.OwinSelfHost
 ```csharp 
@@ -53,7 +53,7 @@ public IHttpActionResult Get_machine_runtime()
 
 ```
 
-# ZeroMQ
+## ZeroMQ
 - Using to subscribe and publish message through each node applications in local network
 - Using this NuGet: [NetMQ](https://netmq.readthedocs.io/en/latest/pub-sub/)
 ```csharp
@@ -98,7 +98,7 @@ public static async Task Publisher_MQ(MQMessage mQMessage)
     }
 }
 ```
-# Working with Database
+## Working with Database
 - Using DatabaseExcute_Main
 
 # Dashboard Web
@@ -106,7 +106,7 @@ public static async Task Publisher_MQ(MQMessage mQMessage)
 - Using DashboardHtml Folder and that is in development 
 
 
-# Configurate settings for Application
+## Configurate settings for Application
 - Class: ApplicationConfig.cs
 Using to store Initial settings configuration for application
 
