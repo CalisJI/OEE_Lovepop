@@ -23,6 +23,7 @@
     <None Remove="Image\plan.png" />
     <None Remove="Image\superviser.png" />
     <None Remove="Image\technical.png" />
+    <None Remove="Image\webdb.png" />
     <None Remove="View\Option1PageView.xaml~RF4b55db61.TMP" />
   </ItemGroup>
 
@@ -73,6 +74,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\technical.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\webdb.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
