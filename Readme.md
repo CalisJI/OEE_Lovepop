@@ -20,7 +20,7 @@ https://github.com/CalisJI/OEE_Lovepop.git
 - [`Microsoft.AspNet.WebApi.OwinSelfHost`](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
 - [`NetMQ`](https://netmq.readthedocs.io/en/latest/pub-sub/)
 ## API 
-- using RESTFul API to communicate with another application like (`***Node-red***`, web API, etc...)
+- using RESTFul API to communicate with another application like (`Node-red`, web API, etc...)
 - Using These NuGet: `Microsoft.AspNet.WebApi.Owin`; `Microsoft.Owin.Host.HttpListener`; `Microsoft.Owin.Hosting`; `Microsoft.AspNet.WebApi.OwinSelfHost`
 ```csharp 
 
