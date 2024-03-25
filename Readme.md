@@ -5,8 +5,9 @@ https://github.com/CalisJI/OEE_Lovepop.git
 ![](./Image/dashboard.png)
 ![](./Image/login.png)
 ![](./Image/plan.png)
-![](./Image/technical.png)
 ![](./Image/superviser.png)
+![](./Image/technical.png)
+
 
 # API 
 - using RESTFul API to communicate with another application like (Node-red, web API, etc...)
