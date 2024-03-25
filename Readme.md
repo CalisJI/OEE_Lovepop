@@ -10,6 +10,15 @@ https://github.com/CalisJI/OEE_Lovepop.git
 ![](./Image/technical.png)
 
 
+# NuGet Were Utilized
+- [MVVM Toolkit](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/)
+- [LiveCharts](https://v0.lvcharts.com/App/examples/v1/Wpf/Install)
+- [Microsoft.Xaml.Behaviors.Wpf](https://github.com/Microsoft/XamlBehaviorsWpf?tab=readme-ov-file)
+- [MahApps.Metro.IconPacks](https://github.com/MahApps/MahApps.Metro.IconPacks)
+- [MaterialDesignThemes](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)
+- [Microsoft.AspNet.WebApi.Owin](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
+- [Microsoft.AspNet.WebApi.OwinSelfHost](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
+
 # API 
 - using RESTFul API to communicate with another application like (Node-red, web API, etc...)
 - Using These NuGet: Microsoft.AspNet.WebApi.Owin; Microsoft.Owin.Host.HttpListener; Microsoft.Owin.Hosting; Microsoft.AspNet.WebApi.OwinSelfHost
