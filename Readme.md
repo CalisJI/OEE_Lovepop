@@ -168,3 +168,52 @@ public class SettingParameter
 }
 ```
 
+# MVVM Pattern Reference
+
+ ### `ViewModelResource.xaml`
+ ```xaml
+ <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:OEE_dotNET.ViewModel"
+                    xmlns:v="clr-namespace:OEE_dotNET.View">
+
+    <DataTemplate DataType="{x:Type vm:Option1PageViewModel}"> <!--Option for planning department-->
+        <v:Option1PageView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:Option2PageViewModel}"> <!--Option for workspace department-->
+        <v:Option2PageView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:Option3PageViewModel}"> <!-- Option for technical department-->
+        <v:Option3PageView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+        <v:DashboardView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PlanOverview_ViewModel}">
+        <v:PlanOverview_View/>
+    </DataTemplate>
+</ResourceDictionary>
+ 
+ ```
+ ### `App.xaml`
+ ```xaml
+ <Application x:Class="OEE_dotNET.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:OEE_dotNET"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ViewModelResource.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Style.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/LiveCharts.Wpf;component/Themes/Colors/material.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+       
+    </Application.Resources>
+    
+</Application>
+
+ ```
