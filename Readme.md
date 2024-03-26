@@ -169,7 +169,7 @@ public class SettingParameter
 }
 ```
 # Initial Class
-- `***App.xaml.cs***`
+- ***`App.xaml.cs`***
 ```csharp
 /// <summary>
 /// Interaction logic for App.xaml
