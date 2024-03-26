@@ -162,3 +162,4 @@ F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\View\SettingWin
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\ico\scan-market-ecommerce-svgrepo-com.ico
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.sourcelink.json
 F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\obj\Debug\net6.0-windows\OEE_dotNET.csproj.Up2Date
+F:\VISUAL PROJECT\CSharp\WPF\OEE_dotNET\bin\Debug\net6.0-windows\System.Web.Http.SelfHost.dll

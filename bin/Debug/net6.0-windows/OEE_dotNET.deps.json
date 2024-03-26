@@ -16,6 +16,7 @@
           "MahApps.Metro.IconPacks.Material": "4.11.0",
           "MaterialDesignThemes": "5.0.0",
           "Microsoft.AspNet.WebApi.OwinSelfHost": "5.3.0",
+          "Microsoft.AspNet.WebApi.SelfHost": "5.3.0",
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Microsoft.Extensions.Identity.Core": "8.0.2",
           "Microsoft.Web.WebView2": "1.0.2365.46",
@@ -380,6 +381,17 @@
           "Microsoft.AspNet.WebApi.Owin": "5.3.0",
           "Microsoft.Owin.Host.HttpListener": "4.2.2",
           "Microsoft.Owin.Hosting": "4.2.2"
+        }
+      },
+      "Microsoft.AspNet.WebApi.SelfHost/5.3.0": {
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Core": "5.3.0"
+        },
+        "runtime": {
+          "lib/net45/System.Web.Http.SelfHost.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.61130.707"
+          }
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/8.0.2": {
@@ -1215,6 +1227,13 @@
       "sha512": "sha512-a/3+IJGF3N1LYF6A9esGq4xR7SIl+fpLvcgC0PrQuTtl5k1W4FLtC/qOGLi6n46QgaKf18jsm0sknImRkyuZgg==",
       "path": "microsoft.aspnet.webapi.owinselfhost/5.3.0",
       "hashPath": "microsoft.aspnet.webapi.owinselfhost.5.3.0.nupkg.sha512"
+    },
+    "Microsoft.AspNet.WebApi.SelfHost/5.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dy6qJQx9fR/0ZRMcyblOCHrecThz7RfeyxXBp8kOA/4vv5P5MA71I72XKtXYLZCkmyWHeFXpkW6DreQg5jkl4g==",
+      "path": "microsoft.aspnet.webapi.selfhost/5.3.0",
+      "hashPath": "microsoft.aspnet.webapi.selfhost.5.3.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/8.0.2": {
       "type": "package",
