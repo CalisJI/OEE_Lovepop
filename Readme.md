@@ -168,6 +168,24 @@ public class SettingParameter
     public int DecrypLength { get; set; }
 }
 ```
+# Initial Class
+- `***App.xaml.cs***`
+```csharp
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
+{
+    public App()
+    {
+        Debug.WriteLine(DatabaseExcute_Main.Check_Database().ToString());
+        ApplicationConfig.GetConfig();
+        //Test
+        //Publisher.Initialize_Req_Res();
+        //Publisher.Initialize_Subcriber();
+    }
+}
+```
 
 # MVVM Pattern Reference
 - **ViewModel**: `MainViewModel`, `Option1PageViewModel`, `Option2PageViewModel`, `Option3PageViewModel`, `DashboardViewModel`, `PlanOver_ViewModel`, `Create_Account_ViewModel`, `SettingWindowViewModel`
