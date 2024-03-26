@@ -101,7 +101,8 @@ public static async Task Publisher_MQ(MQMessage mQMessage)
 # Working with Database
 - Using DatabaseExcute_Main
   ### Database Model Diagram
-
+  ![](./Image/Oee_lovepop.png)
+  [*Details*](https://dbdocs.io/buinguyenquythi/Oee_lovepop?view=relationships)
 
 - Using DashboardHtml Folder and that is in development 
 

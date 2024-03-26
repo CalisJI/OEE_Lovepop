@@ -20,6 +20,7 @@
     <None Remove="Image\dashboard.png" />
     <None Remove="Image\iotimg.jpg" />
     <None Remove="Image\login.png" />
+    <None Remove="Image\Oee_lovepop.png" />
     <None Remove="Image\plan.png" />
     <None Remove="Image\superviser.png" />
     <None Remove="Image\technical.png" />
@@ -65,6 +66,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\login.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Oee_lovepop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\plan.png">
