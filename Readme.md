@@ -169,7 +169,8 @@ public class SettingParameter
 ```
 
 # MVVM Pattern Reference
-
+- **ViewModel**: `MainViewModel`, `Option1PageViewModel`, `Option2PageViewModel`, `Option3PageViewModel`, `DashboardViewModel`, `PlanOver_ViewModel`, `Create_Account_ViewModel`, `SettingWindowViewModel`
+- **View**: `MainWindow`, `Option1PageView`,`Option2PageView`,`Option3PageView`,`DashboardView`, `PlanOver_View`,`Create_Account_View`, `SettingWindow_View`
  ### `ViewModelResource.xaml`
  ```xaml
  <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -217,3 +218,6 @@ public class SettingParameter
 </Application>
 
  ```
+# Style
+ `Style.xaml`
+
