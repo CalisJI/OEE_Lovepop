@@ -6,6 +6,7 @@ using OEE_dotNET.Database;
 using OEE_dotNET.View;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -80,6 +81,8 @@ public partial class MainViewModel : ObservableObject
         option3PageView = null;
         dashboardView = null;
         planOverview_View = null;
+       
+        //a.mo_code = ab["mo_code"]
     }
 
     [RelayCommand]
